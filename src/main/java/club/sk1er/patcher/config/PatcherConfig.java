@@ -291,6 +291,13 @@ public class PatcherConfig extends Vigilant {
     public static float customZoomSensitivity = 1.0F;
 
     @Property(
+        type = PropertyType.SWITCH, name = "Dynamic Zoom Sensitivity",
+        description = "Reduce your mouse sensitivity the more you zoom in.",
+        category = "Miscellaneous", subcategory = "OptiFine"
+    )
+    public static boolean dynamicZoomSensitivity;
+
+    @Property(
         type = PropertyType.SWITCH, name = "Smooth Zoom Animation",
         description = "Add a smooth animation when you zoom in and out.",
         category = "Miscellaneous", subcategory = "OptiFine"
@@ -459,6 +466,13 @@ public class PatcherConfig extends Vigilant {
         category = "Miscellaneous", subcategory = "Rendering"
     )
     public static boolean disableShadowedText;
+
+    @Property(
+        type = PropertyType.SWITCH, name = "Left Hand in First Person",
+        description = "Render the first-person hand on the left of the screen.",
+        category = "Miscellaneous", subcategory = "Rendering"
+    )
+    public static boolean leftHandInFirstPerson;
 
     @Property(
         type = PropertyType.SWITCH, name = "Better Camera",
@@ -811,7 +825,7 @@ public class PatcherConfig extends Vigilant {
 
     @Property(
         type = PropertyType.SWITCH, name = "Click Out of Containers",
-        description = "Click outside of a container to close the menu.",
+        description = "Click outside a container to close the menu.",
         category = "Screens", subcategory = "Inventory"
     )
     public static boolean clickOutOfContainers;
@@ -830,7 +844,7 @@ public class PatcherConfig extends Vigilant {
 
     @Property(
         type = PropertyType.SWITCH, name = "Remove Container Background",
-        description = "Remove the dark background inside of a container.",
+        description = "Remove the dark background inside a container.",
         category = "Screens", subcategory = "General"
     )
     public static boolean removeContainerBackground = false;
@@ -976,14 +990,14 @@ public class PatcherConfig extends Vigilant {
 
     @Property(
         type = PropertyType.SWITCH, name = "Protection Percentage",
-        description = "View how much total armor protection you have inside of your inventory.",
+        description = "View how much total armor protection you have inside your inventory.",
         category = "Screens", subcategory = "Combat Utilities"
     )
     public static boolean protectionPercentage;
 
     @Property(
         type = PropertyType.SWITCH, name = "Projectile Protection Percentage",
-        description = "View how much total projectile protection you have inside of your inventory.",
+        description = "View how much total projectile protection you have inside your inventory.",
         category = "Screens", subcategory = "Combat Utilities"
     )
     public static boolean projectileProtectionPercentage;
@@ -1276,7 +1290,8 @@ public class PatcherConfig extends Vigilant {
                 "useVanillaMetricsRenderer",
                 "renderHandWhenZoomed",
                 "smartFullbright",
-                "smartEntityCulling"
+                "smartEntityCulling",
+                "dynamicZoomSensitivity"
             ).forEach(property -> hidePropertyIf(property, () -> ClassTransformer.optifineVersion.equals("NONE")));
 
             Function0<Boolean> smoothFontDetected = () -> ClassTransformer.smoothFontDetected;
